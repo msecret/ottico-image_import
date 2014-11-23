@@ -1,0 +1,19 @@
+{
+  "name": "ottico-image_import",
+  "version": "0.0.1",
+  "description": "An import script to process image data and export it to a sql file to add to ottico.miceover.com",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/msecret/ottico-image_import.git"
+  },
+  "author": "Marco Segreto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/msecret/ottico-image_import/issues"
+  },
+  "homepage": "https://github.com/msecret/ottico-image_import"
+}

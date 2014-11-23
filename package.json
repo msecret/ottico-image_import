@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/msecret/ottico-image_import/issues"
   },
-  "homepage": "https://github.com/msecret/ottico-image_import"
+  "homepage": "https://github.com/msecret/ottico-image_import",
+  "devDependencies": {
+    "event-stream": "^3.1.7",
+    "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-tsc": "^0.9.2",
+    "gulp-uglifyjs": "^0.5.0",
+    "run-sequence": "^1.0.2"
+  },
+  "dependencies": {
+    "imagemagick": "^0.1.3"
+  }
 }

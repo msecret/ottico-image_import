@@ -6,6 +6,5 @@
 var imagemagick = require('imagemagick');
 
 function main() {
-  console.log('fuck');
   return 0;
 }

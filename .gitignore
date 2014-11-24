@@ -26,3 +26,8 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# Don't commit js files on a typescript project
+.js
+build/
+typings/

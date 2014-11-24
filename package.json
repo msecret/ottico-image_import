@@ -4,11 +4,13 @@
   "description": "An import script to process image data and export it to a sql file to add to ottico.miceover.com",
   "main": "main.js",
   "scripts": {
-    "clean": "time rm ./build/js/*",
-    "build": "time npm run clean && npm run build-tsc && npm run build-compress",
-    "build-tsc": "time tsc --module commonjs --sourceMap --out ./build/js/ottico-image-import.js main.ts",
+    "clean": "touch ./build/js/timestamp && rm ./build/js/*",
+    "cleanup": "touch ./build/ts-files.txt && rm ./build/ts-files.txt",
+    "build": "npm run clean && npm run build-tsc && npm run cleanup",
+    "build-files": "dir src/*.ts > build/ts-files.txt",
+    "build-tsc": "npm run build-files && tsc --module commonjs --sourceMap --outDir ./build/js @build/ts-files.txt",
     "build-compress": "time uglifyjs -o ./build/js/ottico-image-import.min.js --in-source-map ./build/js/ottico-image-import.js.map --screw-ie8 --source-map ./build/js/ottico-image-import.min.js.map ./build/js/ottico-image-import.js",
-    "test": "test"
+    "test": "npm run build && tape build/js/*_test.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   },
   "homepage": "https://github.com/msecret/ottico-image_import",
   "devDependencies": {
+    "tape": "^3.0.3",
     "typescript": "^1.3.0",
     "uglify-js": "^2.4.15"
   },

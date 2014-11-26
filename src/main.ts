@@ -1,13 +1,11 @@
 ///<reference path='../typings/tsd.d.ts' />
-///<reference path='./args.ts' />
 /*
  *
  */
 
 import args = require('./args');
-var Args = args.Args;
 
-var s = new Args(process);
+var s = new args.ArgsParser(process.argv);
 console.log(s);
 
 // oip --album-id 3 --dir ./
@@ -19,4 +17,3 @@ console.log(s);
 //   do stuff with picture
 //   sqls.push(sql.writesql(picture))
 // write sqls to $(FILE)
-

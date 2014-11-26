@@ -1,11 +1,24 @@
 ///<reference path='../typings/tsd.d.ts' />
 
-
-export class Args {
+export interface Args {
   albumId: number;
   dir: string;
   file: string;
-  constructor(argv: NodeJS.Process) { this.processArgs(argv); }
-  processArgs(process: NodeJS.Process) {}
 }
+
+export class ArgsParser implements Args {
+  argv: string[];
+  albumId: number;
+  dir: string;
+  file: string;
+  constructor(argv: string[]) {
+    this.argv = argv;
+  }
+
+  processArgs(args: string[]) {
+    throw new Error("invalid foo");
+    return;
+  }
+}
+
 

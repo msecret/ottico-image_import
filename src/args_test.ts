@@ -14,7 +14,7 @@ tape('ArgsParser constructor() should set argv to string[] passed in',
   var expected : string[],
       testArgs;
 
-  expected = ['node', '/file.js', 'one'];
+  expected = ['node', '/file.js', 'one', 'two', 'three'];
   testArgs = new args.ArgsParser(expected);
 
   t.equals(expected, testArgs.argv, 'Sets argv to string[] passed in');
@@ -27,12 +27,25 @@ tape('ArgsParser processArgs should fail if theres less then 3 arguments',
 
   t.plan(1);
 
-  testArgs = new args.ArgsParser(['node', 'file/js', 'one']);
 
   try {
-    testArgs.processArgs()
+    testArgs = new args.ArgsParser(['node', 'file/js', 'one']);
   } catch (e) {
     t.pass('Threw an error');
   }
+  t.end();
+});
+
+tape('ArgsParser processArgs should set albumId, dirName and fileName to the ' +
+    'first passed in', (t: tape.Test) => {
+  var expected : string[],
+      testArgs;
+
+  expected = ['node', '/file.js', '1', 'two', 'three'];
+  testArgs = new args.ArgsParser(expected);
+
+  t.equals(parseInt(expected[2], 10), testArgs.albumId);
+  t.equals(expected[3], testArgs.dirName);
+  t.equals(expected[4], testArgs.fileName);
   t.end();
 });

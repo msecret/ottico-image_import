@@ -6,7 +6,6 @@
 import args = require('./args');
 
 var s = new args.ArgsParser(process.argv);
-console.log(s);
 
 // oip --album-id 3 --dir ./
 

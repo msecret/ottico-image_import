@@ -17,4 +17,5 @@ export class Picture {
   constructor(image: string) { this.image = image; }
 
   convertCase() {}
+  createThm(image: string) {}
 }

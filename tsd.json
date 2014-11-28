@@ -8,11 +8,8 @@
     "node/node.d.ts": {
       "commit": "a2786aa37794c513a20759a0f1b4c1c04c04c448"
     },
-    "tspromise/tspromise.d.ts": {
-      "commit": "7c94fa739cdb7ef9c5fb794116e787cb13955d35"
-    },
-    "q/Q.d.ts": {
-      "commit": "7c94fa739cdb7ef9c5fb794116e787cb13955d35"
+    "bluebird/bluebird.d.ts": {
+      "commit": "569bf2ba07d7d526ac4d7d67c29a0fc51df3a440"
     }
   }
 }

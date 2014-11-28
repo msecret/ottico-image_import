@@ -7,6 +7,12 @@
   "installed": {
     "node/node.d.ts": {
       "commit": "a2786aa37794c513a20759a0f1b4c1c04c04c448"
+    },
+    "tspromise/tspromise.d.ts": {
+      "commit": "7c94fa739cdb7ef9c5fb794116e787cb13955d35"
+    },
+    "q/Q.d.ts": {
+      "commit": "7c94fa739cdb7ef9c5fb794116e787cb13955d35"
     }
   }
 }

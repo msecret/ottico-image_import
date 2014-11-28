@@ -4,8 +4,23 @@
  */
 
 import args = require('./args');
+import imgprocessor = require('./img_processor');
 
-var s = new args.ArgsParser(process.argv);
+try {
+  var parameters = new args.ArgsParser(process.argv);
+} catch (e) {
+  console.error(e);
+  process.exit(1);
+}
+
+var filesPromise = imgprocessor.getFiles(parameters);
+filesPromise.then(function(files) {
+  console.log(files);
+}, function(error) {
+  console.error('ERROR:Files not readable');
+  console.error(error);
+  process.exit(1);
+});
 
 // oip --album-id 3 --dir ./
 

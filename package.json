@@ -24,10 +24,12 @@
   "homepage": "https://github.com/msecret/ottico-image_import",
   "devDependencies": {
     "tape": "^3.0.3",
-    "typescript": "^1.3.0",
+    "typescript": "1.3.0.0",
     "uglify-js": "^2.4.15"
   },
   "dependencies": {
-    "imagemagick": "^0.1.3"
+    "imagemagick": "^0.1.3",
+    "q": "^1.1.2",
+    "tspromise": "0.0.5"
   }
 }

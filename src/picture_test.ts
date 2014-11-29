@@ -140,22 +140,39 @@ tape('exists', (t: tape.Test) => {
   t.end();
 });
 
-tape('setDimensions sets orientation property from width and height metadata',
-    (t: tape.Test) => {
+tape('constructor should set the orientation', (t: tape.Test) => {
   var testPicture: p.Picture,
+      actual: p.Orientation,
       expected: p.Orientation;
 
   testMetaData.width = 800;
   testMetaData.height = 600;
 
   testPicture = new p.Picture(testMetaData);
-  expected = testPicture.setOrientation(testMetaData);
+  expected = p.Orientation.horizontal;
+  actual = testPicture.orientation;
 
-  t.equals(expected, p.Orientation.horizontal,
+  t.equals(expected, actual, 'Orientation is set correctly to horizontal when '+
+    'constucted');
+  t.end();
+});
+
+tape('calcDimensions returns orientation from width and height metadata',
+    (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: p.Orientation;
+
+  testMetaData.width = 800;
+  testMetaData.height = 600;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.calcOrientation(testMetaData);
+
+  t.equals(actual, p.Orientation.horizontal,
     'Should be horizontal orientation');
 
   testMetaData.height = 900;
-  expected = testPicture.setOrientation(testMetaData);
-  t.equals(expected, p.Orientation.vertical, 'Should be vertical orientation');
+  actual = testPicture.calcOrientation(testMetaData);
+  t.equals(actual, p.Orientation.vertical, 'Should be vertical orientation');
   t.end();
 });

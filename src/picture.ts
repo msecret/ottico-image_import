@@ -6,7 +6,7 @@ export class Picture {
   description: string;
   image: string;
   private imageThm: string;
-  private orientation: Orientation;
+  private _orientation: Orientation;
   rating: number;
   expIso: number;
   expFs: number;
@@ -15,9 +15,21 @@ export class Picture {
   private albumId: number;
   private status: Status;
 
-  constructor(metaData: IMetaData) { this.metaData = metaData; }
+  constructor(metaData: IMetaData) {
+    this.metaData = metaData;
+    this._orientation = this.calcOrientation(this.metaData);
+  }
 
-  setOrientation(metaData: IMetaData): Orientation {
+  get orientation(): Orientation {
+    return this._orientation;
+  }
+
+  set orientation(newOrientation: Orientation) {
+    // TODO possibly add error detection here.
+    this._orientation = newOrientation;
+  }
+
+  calcOrientation(metaData: IMetaData): Orientation {
     var width = metaData.width,
         height = metaData.height;
 

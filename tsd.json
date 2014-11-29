@@ -10,6 +10,9 @@
     },
     "bluebird/bluebird.d.ts": {
       "commit": "569bf2ba07d7d526ac4d7d67c29a0fc51df3a440"
+    },
+    "imagemagick/imagemagick.d.ts": {
+      "commit": "974747ee99bbd087bac5e5647405101139519963"
     }
   }
 }

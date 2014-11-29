@@ -13,7 +13,8 @@ try {
   process.exit(1);
 }
 
-var filesPromise = imgprocessor.getFiles(parameters);
+var files = imgprocessor.lsFiles(parameters);
+var filesPromise = imgprocessor.getFiles(files);
 filesPromise.then(function(files) {
   return files;
 }).then(function(files) {
@@ -22,6 +23,14 @@ filesPromise.then(function(files) {
   console.error('ERROR:Files not readable');
   console.error(error);
   process.exit(1);
+});
+
+var metaDataPromise = imgprocessor.processPictures(files);
+metaDataPromise.then(function(metaDatas) {
+  console.log(metaDatas);
+}, function(err) {
+  console.error('ERROR:Files not metadatable');
+  console.log(err);
 });
 
 // oip --album-id 3 --dir ./

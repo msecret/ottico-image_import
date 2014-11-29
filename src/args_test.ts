@@ -2,6 +2,7 @@
 ///<reference path='../src/args.ts' />
 
 import tape = require('tape');
+
 import args = require('./args');
 
 tape('exists', (t: tape.Test) => {

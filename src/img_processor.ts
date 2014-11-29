@@ -3,11 +3,11 @@
 import fs = require('fs');
 import util = require('util');
 
-import args = require('./args');
 import Promise = require('bluebird');
 
-var fs_readdir = Promise.promisify(fs.readdir),
-    fs_readFile = Promise.promisify(fs.readFile);
+import args = require('./args');
+
+var fs_readFile = Promise.promisify(fs.readFile);
 
 export function getFiles(params: args.IArgs): Promise<any> {
   var files = fs.readdirSync(params.dirName);
@@ -22,4 +22,7 @@ export function getFiles(params: args.IArgs): Promise<any> {
   }
 
   return Promise.all(filePromises);
+}
+export function setFsReadFiles(s: any) {
+  fs_readFile = s;
 }

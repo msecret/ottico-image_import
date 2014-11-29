@@ -25,23 +25,3 @@ tape('exists', (t: tape.Test) => {
   t.ok(imgProcessor, 'Processor exists');
   t.end();
 });
-
-tape('imageProcessor getFiles should return a promise with val',
-    (t: tape.Test) => {
-  var imgProcessor = DI.loadModule('./img_processor.js', {fs: mockFs});
-  var expected = ['datadatadata'],
-      testFilesPromise,
-      testArgs;
-
-  imgProcessor.setFsReadFiles(mockFs.fs_readFile);
-  testArgs = new args.ArgsParser(['node', './', 'one', 'two', 'three']);
-  testFilesPromise = imgProcessor.getFiles(testArgs);
-  testFilesPromise.then(function(files) {
-    t.ok(files, 'File data passed back is there');
-    t.deepEquals(expected, files, 'Returns the correct file data');
-  }, function(error) {
-    t.fail(error);
-  });
-  t.end();
-});
-

@@ -45,6 +45,8 @@ export function processPictures(files: string[]): Promise<any> {
 
   for ( ; i < ilen; i++) {
     if (path.extname(files[i]) === '.jpg') {
+      // TODO debug
+      if (i === 2) break;
       metaDataPromises.push(im_readMetadata(files[i]));
     }
   }

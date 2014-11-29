@@ -15,7 +15,9 @@ try {
 
 var filesPromise = imgprocessor.getFiles(parameters);
 filesPromise.then(function(files) {
-  console.log(files);
+  return files;
+}).then(function(files) {
+  return imgprocessor.processPictures(files);
 }, function(error) {
   console.error('ERROR:Files not readable');
   console.error(error);

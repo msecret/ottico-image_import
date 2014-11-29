@@ -26,7 +26,8 @@ tape('exists', (t: tape.Test) => {
   t.end();
 });
 
-tape('imageProcessor getFiles should return a promise', (t: tape.Test) => {
+tape('imageProcessor getFiles should return a promise with val',
+    (t: tape.Test) => {
   var imgProcessor = DI.loadModule('./img_processor.js', {fs: mockFs});
   var expected = ['datadatadata'],
       testFilesPromise,

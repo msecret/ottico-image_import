@@ -35,6 +35,8 @@ export class Picture {
     this._imageThm = this.createThm(this.image);
     this._orientation = this.calcOrientation(this.metaData);
     this.expFs = this.removeDenominator(metaData.properties[mapping.expFs]);
+    this.focalLength = this.removeDenominator(
+        metaData.properties[mapping.focalLength]);
     this.expIso = metaData.properties[mapping.expIso];
   }
 

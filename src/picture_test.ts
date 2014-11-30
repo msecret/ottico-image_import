@@ -214,6 +214,17 @@ tape('constructor should set the expFs', (t: tape.Test) => {
   t.equals(actual, expected, 'The expFs is set correctly as a number')
   t.end();
 });
+tape('constructor should set the focalLength', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: number,
+      expected = 18;
+
+  testMetaData.properties['exif:focallength'] = '18/1';
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.focalLength;
+  t.equals(actual, expected, 'The focalLength is set correctly as a number')
+  t.end();
+});
 tape('constructor should set the expIso', (t: tape.Test) => {
   var testPicture: p.Picture,
       actual: number,

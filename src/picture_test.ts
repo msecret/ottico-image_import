@@ -140,6 +140,42 @@ tape('exists', (t: tape.Test) => {
   t.end();
 });
 
+tape('constructor should set name', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      expected = 'A Nice Name',
+      actual: string;
+
+  testMetaData.properties['exif:imagedescription'] = expected;
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.name;
+  t.equals(expected, actual, 'Sets the name attr on construction');
+  t.end();
+});
+tape('constructor should set the image', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      expected = 'thing.jpg',
+      actual: string;
+
+  testMetaData.artifacts.filename = expected;
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.image;
+
+  t.equals(expected, actual, 'Sets the image attr on construction');
+  t.end();
+});
+tape('constructor should set the imageThm', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      testName = '/path/to/thing.jpg',
+      expected = 'thing_thm.jpg',
+      actual: string;
+
+  testMetaData.artifacts.filename = testName;
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.imageThm;
+
+  t.equals(expected, actual, 'Sets the imageThm attr on construction');
+  t.end();
+});
 tape('constructor should set the orientation', (t: tape.Test) => {
   var testPicture: p.Picture,
       actual: p.Orientation,
@@ -154,31 +190,6 @@ tape('constructor should set the orientation', (t: tape.Test) => {
 
   t.equals(expected, actual, 'Orientation is set correctly to horizontal when '+
     'constucted');
-  t.end();
-});
-tape('constructor should set the name', (t: tape.Test) => {
-  var testPicture: p.Picture,
-      expected = 'thing.jpg',
-      actual: string;
-
-  testMetaData.artifacts.filename = expected;
-  testPicture = new p.Picture(testMetaData);
-  actual = testPicture.name;
-
-  t.equals(expected, actual, 'Sets the name attr on construction');
-  t.end();
-});
-tape('constructor should set the imageThm', (t: tape.Test) => {
-  var testPicture: p.Picture,
-      testName = '/path/to/thing.jpg',
-      expected = 'thing_thm.jpg',
-      actual: string;
-
-  testMetaData.artifacts.filename = testName;
-  testPicture = new p.Picture(testMetaData);
-  actual = testPicture.imageThm;
-
-  t.equals(expected, actual, 'Sets the imageThm attr on construction');
   t.end();
 });
 
@@ -202,7 +213,7 @@ tape('calcDimensions returns orientation from width and height metadata',
   t.end();
 });
 
-tape('resolveName will return just the filename and extension from path',
+tape('resolveImage will return just the filename and extension from path',
     (t: tape.Test) => {
   var testPicture: p.Picture,
       expected = 'thing.jpg',
@@ -210,7 +221,7 @@ tape('resolveName will return just the filename and extension from path',
 
   testMetaData.artifacts.filename = '/path/to/' + expected;
   testPicture = new p.Picture(testMetaData);
-  actual = testPicture.resolveName(testMetaData);
+  actual = testPicture.resolveImage(testMetaData);
   t.equals(expected, actual, 'Returns just the filename from full path');
   t.end();
 });

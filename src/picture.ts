@@ -21,8 +21,9 @@ export class Picture {
 
   constructor(metaData: IMetaData) {
     this.metaData = metaData;
-    this.name = this.resolveName(this.metaData);
-    this._imageThm = this.createThm(this.name);
+    this.name = metaData.properties['exif:imagedescription'];
+    this.image = this.resolveImage(this.metaData);
+    this._imageThm = this.createThm(this.image);
     this._orientation = this.calcOrientation(this.metaData);
   }
 
@@ -43,7 +44,7 @@ export class Picture {
     this._orientation = newOrientation;
   }
 
-  resolveName(metaData: IMetaData): string {
+  resolveImage(metaData: IMetaData): string {
     var fullPath = metaData.artifacts.filename;
 
     return path.basename(fullPath);

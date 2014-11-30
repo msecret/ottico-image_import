@@ -11,6 +11,7 @@ import args = require('./args');
 
 var fs_readFile = Promise.promisify(fs.readFile);
 var im_readMetadata = Promise.promisify(im.readMetadata);
+var im_identify = Promise.promisify(im.identify);
 
 export function lsFiles(params: args.IArgs): string[] {
   var files = fs.readdirSync(params.dirName);
@@ -47,7 +48,7 @@ export function processPictures(files: string[]): Promise<any> {
     if (path.extname(files[i]) === '.jpg') {
       // TODO debug
       if (i === 2) break;
-      metaDataPromises.push(im_readMetadata(files[i]));
+      metaDataPromises.push(im_identify(files[i]));
     }
   }
 

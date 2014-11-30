@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "touch ./build/js/timestamp && rm ./build/js/*",
     "cleanup": "touch ./build/ts-files.txt && rm ./build/ts-files.txt",
-    "build": "npm run clean && npm run build-tsc && npm run cleanup",
+    "build": "npm run clean && npm run build-tsc && npm run cleanup && cp ./build/js/main.js ./build/js/oip.js",
     "build-files": "dir src/*.ts > build/ts-files.txt",
     "build-tsc": "npm run build-files && tsc -t ES5 --module commonjs --sourceMap --outDir ./build/js @build/ts-files.txt",
     "build-compress": "time uglifyjs -o ./build/js/ottico-image-import.min.js --in-source-map ./build/js/ottico-image-import.js.map --screw-ie8 --source-map ./build/js/ottico-image-import.min.js.map ./build/js/ottico-image-import.js",

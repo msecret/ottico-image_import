@@ -6,6 +6,7 @@
 import args = require('./args');
 import imgprocessor = require('./img_processor');
 import p = require('./picture');
+import sql = require('./sql');
 
 try {
   var parameters = new args.ArgsParser(process.argv);
@@ -28,17 +29,21 @@ filesPromise.then(function(files) {
 
 var metaDataPromise = imgprocessor.processPictures(files);
 metaDataPromise.then(function(metaDatas) {
-  console.log(metaDatas);
   return metaDatas;
 }).then(function(metaDatas) {
   var i: number,
       ilen: number,
+      sqls = '',
       picture: p.Picture,
       pictures = [];
 
   for (i = 0, ilen = metaDatas.length; i < ilen; i++) {
-    picture = new p.Picture(metaDatas[i]);
+    if (i === 2) break;
+    picture = new p.Picture(metaDatas[i], parameters.albumId);
+    sqls += sql.insertPicture(picture);
+    sqls += "\n";
   }
+  console.log(sqls);
 }, function(err) {
   console.error('ERROR:Files not metadatable');
   console.log(err);

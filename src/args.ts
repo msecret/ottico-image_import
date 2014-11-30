@@ -17,12 +17,11 @@ export class ArgsParser implements IArgs {
   }
 
   processArgs(args: string[]) {
-    if (args.length < 5) {
+    if (args.length < 4) {
       throw new Error('Incorrect amount of arguments');
     }
     this.albumId = parseInt(args[2], 10);
     this.dirName = args[3];
-    this.fileName = args[4];
     return;
   }
 }

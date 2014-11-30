@@ -40,6 +40,13 @@ export class Picture {
     return path.basename(fullPath);
   }
 
+  createThm(name: string): string {
+    var thm: string;
+    thm = name.replace(/(\.[\w\d_-]+)$/i, '_thm$1');
+
+    return thm;
+  }
+
   calcOrientation(metaData: IMetaData): Orientation {
     var width = metaData.width,
         height = metaData.height;
@@ -52,7 +59,6 @@ export class Picture {
     }
   }
   convertCase() {}
-  createThm(image: string) {}
 }
 
 interface ChannelDepth {

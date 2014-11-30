@@ -201,3 +201,15 @@ tape('resolveName will return just the filename and extension from path',
   t.equals(expected, actual, 'Returns just the filename from full path');
   t.end();
 });
+
+tape('createThm returns the name with thm attached', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      testName = 'thing.jpg',
+      expected = 'thing_thm.jpg',
+      actual: string;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.createThm(testName);
+  t.equals(expected, actual, 'Sets thm string on name');
+  t.end();
+});

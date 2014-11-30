@@ -257,6 +257,16 @@ tape('constructor should set status to inactive', (t: tape.Test) => {
   t.equals(actual, expected, 'The status is set to inactive')
   t.end();
 });
+tape('constructor should set rating to 2', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: number,
+      expected = 2;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.rating;
+  t.equals(actual, expected, 'The rating is set to 2')
+  t.end();
+});
 
 tape('calcDimensions returns orientation from width and height metadata',
     (t: tape.Test) => {

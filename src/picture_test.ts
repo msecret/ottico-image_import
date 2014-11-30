@@ -203,6 +203,17 @@ tape('constructor should set the orientation', (t: tape.Test) => {
     'constucted');
   t.end();
 });
+tape('constructor should set the expIso', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: number,
+      expected = 100;
+
+  testMetaData.properties['exif:isospeedratings'] = '100';
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.expIso;
+  t.equals(actual, expected, 'The expIso is set correctly as a number')
+  t.end();
+});
 
 tape('calcDimensions returns orientation from width and height metadata',
     (t: tape.Test) => {

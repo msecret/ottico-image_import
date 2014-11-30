@@ -19,7 +19,7 @@ export class Picture {
   private _imageThm: string;
   private _orientation: Orientation;
   rating: number;
-  expIso: number;
+  private _expIso: number;
   expFs: number;
   expSh: string;
   focalLength: number;
@@ -34,6 +34,7 @@ export class Picture {
     this.image = this.resolveImage(this.metaData);
     this._imageThm = this.createThm(this.image);
     this._orientation = this.calcOrientation(this.metaData);
+    this.expIso = metaData.properties[mapping.expIso];
   }
 
   get imageThm(): string {
@@ -51,6 +52,19 @@ export class Picture {
   set orientation(newOrientation: Orientation) {
     // TODO possibly add error detection here.
     this._orientation = newOrientation;
+  }
+
+  get expIso(): any {
+    return this._expIso;
+  }
+
+  set expIso(newIso: any) {
+    var iso = parseInt(newIso, 10);
+
+    // TODO add error handling.
+    if (!isNaN(iso)) {
+      this._expIso = iso;
+    }
   }
 
   convertAscii(codes: string): string {

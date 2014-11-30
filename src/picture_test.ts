@@ -264,7 +264,7 @@ tape('constructor should set rating to 2', (t: tape.Test) => {
 
   testPicture = new p.Picture(testMetaData);
   actual = testPicture.rating;
-  t.equals(actual, expected, 'The rating is set to 2')
+  t.equals(actual, expected, 'The rating is set to 2');
   t.end();
 });
 tape('constructor should set albumId to one passed in, or 0 if none',
@@ -348,5 +348,53 @@ tape('removeDenominator should return a number for the numerator',
   testPicture = new p.Picture(testMetaData);
   actual = testPicture.removeDenominator('18/1');
   t.equals(actual, expected, 'Removes the denominator and returns a number');
+  t.end();
+});
+
+tape('convertCase should take a camelCase and convert to underscore',
+    (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: string;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.convertCase('imageThm');
+  t.equals(actual, 'image_thm', 'Result is underscore cased');
+  t.end();
+});
+
+tape('toJSON should return a json represnation of the object',(t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual,
+      expected;
+
+  expected = {
+    name: 'Test Name',
+    description: 'me',
+    image: 'tester.jpg',
+    image_thm: 'tester_thm.jpg',
+    orientation: 'horizontal',
+    rating: 2,
+    exp_iso: 200,
+    exp_fs: 8,
+    exp_sh: '1/100',
+    focal_length: 18,
+    status: 'inactive',
+    album_id: 9
+  };
+
+  testMetaData.properties['exif:imagedescription'] = expected.name;
+  testMetaData.properties['exif:usercomment'] = '109, 101';
+  testMetaData.artifacts.filename = expected.image;
+  testMetaData.width = 800;
+  testMetaData.height = 600;
+  testMetaData.properties['exif:fnumber'] = '8/1';
+  testMetaData.properties['exif:isospeedratings'] = '200';
+  testMetaData.properties['exif:exposuretime'] = '1/100';
+  testMetaData.properties['exif:focallength'] = '18/1';
+  testPicture = new p.Picture(testMetaData, expected.album_id);
+  actual = testPicture.toJSON();
+  t.deepEquals(actual, expected, 'A correct JSON representation ' +
+      'the object');
+
   t.end();
 });

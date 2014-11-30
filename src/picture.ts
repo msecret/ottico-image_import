@@ -120,7 +120,33 @@ export class Picture {
     return parseInt(sep[0], 10);
   }
 
-  convertCase() {}
+  convertCase(text: string): string {
+    return text.replace(/([A-Z])/g, function($1){return "_"+$1.toLowerCase();});
+  }
+
+  toJSON() {
+    var toReturn = {},
+        casedPropName = '',
+        propName,
+        propVal;
+
+    for (propName in this) {
+      if (this.hasOwnProperty(propName) && propName !== 'metaData') {
+        propName = propName.replace('_', '');
+        propVal = this[propName];
+        if (propName === 'orientation') {
+          propVal = Orientation[propVal];
+        }
+        if (propName === 'status') {
+          propVal = Status[propVal];
+        }
+        casedPropName = this.convertCase(propName);
+        toReturn[casedPropName] = propVal;
+      }
+    }
+
+    return toReturn;
+  }
 }
 
 interface ChannelDepth {

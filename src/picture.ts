@@ -22,6 +22,8 @@ export class Picture {
   constructor(metaData: IMetaData) {
     this.metaData = metaData;
     this.name = metaData.properties['exif:imagedescription'];
+    this.description = this.convertAscii(
+        metaData.properties['exif:usercomment']);
     this.image = this.resolveImage(this.metaData);
     this._imageThm = this.createThm(this.image);
     this._orientation = this.calcOrientation(this.metaData);

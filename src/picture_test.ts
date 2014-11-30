@@ -151,6 +151,17 @@ tape('constructor should set name', (t: tape.Test) => {
   t.equals(expected, actual, 'Sets the name attr on construction');
   t.end();
 });
+tape('constructor should set description', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      expected = 'me',
+      actual: string;
+
+  testMetaData.properties['exif:usercomment'] = '109, 101';
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.description;
+  t.equals(actual, expected, 'Sets the description attr on construction');
+  t.end();
+});
 tape('constructor should set the image', (t: tape.Test) => {
   var testPicture: p.Picture,
       expected = 'thing.jpg',

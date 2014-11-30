@@ -260,3 +260,15 @@ tape('convertAscii will convert an array of ascii codes to a string',
   t.equals(actual, expected, 'Converts a string of ascii codes to string');
   t.end();
 });
+
+tape('removeDenominator should return a number for the numerator',
+    (t: tape.Test) => {
+  var testPicture: p.Picture,
+      expected = 18,
+      actual: number;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.removeDenominator('18/1');
+  t.equals(actual, expected, 'Removes the denominator and returns a number');
+  t.end();
+});

@@ -2,6 +2,13 @@
 
 import path = require('path');
 
+var mapping = {
+  expIso: 'exif:isospeedratings',
+  expFs: 'exif:fnumber',
+  expSh: 'exif:exposuretime',
+  focalLength: 'exif:focallength'
+}
+
 export enum Orientation {horizontal, vertical};
 enum Status {active, inactive};
 export class Picture {
@@ -14,7 +21,7 @@ export class Picture {
   rating: number;
   expIso: number;
   expFs: number;
-  expSh: number;
+  expSh: string;
   focalLength: number;
   private albumId: number;
   private status: Status;
@@ -85,6 +92,13 @@ export class Picture {
       return Orientation.vertical;
     }
   }
+
+  removeDenominator(fraction: string): number {
+    var sep = fraction.split('/');
+
+    return parseInt(sep[0], 10);
+  }
+
   convertCase() {}
 }
 

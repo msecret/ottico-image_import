@@ -168,6 +168,19 @@ tape('constructor should set the name', (t: tape.Test) => {
   t.equals(expected, actual, 'Sets the name attr on construction');
   t.end();
 });
+tape('constructor should set the imageThm', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      testName = '/path/to/thing.jpg',
+      expected = 'thing_thm.jpg',
+      actual: string;
+
+  testMetaData.artifacts.filename = testName;
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.imageThm;
+
+  t.equals(expected, actual, 'Sets the imageThm attr on construction');
+  t.end();
+});
 
 tape('calcDimensions returns orientation from width and height metadata',
     (t: tape.Test) => {

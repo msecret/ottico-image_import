@@ -9,7 +9,7 @@ export class Picture {
   name: string;
   description: string;
   image: string;
-  private imageThm: string;
+  private _imageThm: string;
   private _orientation: Orientation;
   rating: number;
   expIso: number;
@@ -22,7 +22,16 @@ export class Picture {
   constructor(metaData: IMetaData) {
     this.metaData = metaData;
     this.name = this.resolveName(this.metaData);
+    this._imageThm = this.createThm(this.name);
     this._orientation = this.calcOrientation(this.metaData);
+  }
+
+  get imageThm(): string {
+    return this._imageThm;
+  }
+
+  set imageThm(thm: string) {
+    this._imageThm = thm;
   }
 
   get orientation(): Orientation {

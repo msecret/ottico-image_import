@@ -203,6 +203,17 @@ tape('constructor should set the orientation', (t: tape.Test) => {
     'constucted');
   t.end();
 });
+tape('constructor should set the expFs', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: number,
+      expected = 10;
+
+  testMetaData.properties['exif:fnumber'] = '10/1';
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.expFs;
+  t.equals(actual, expected, 'The expFs is set correctly as a number')
+  t.end();
+});
 tape('constructor should set the expIso', (t: tape.Test) => {
   var testPicture: p.Picture,
       actual: number,

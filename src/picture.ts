@@ -1,3 +1,7 @@
+///<reference path='../typings/tsd.d.ts' />
+
+import path = require('path');
+
 export enum Orientation {horizontal, vertical};
 enum Status {active, inactive};
 export class Picture {
@@ -27,6 +31,12 @@ export class Picture {
   set orientation(newOrientation: Orientation) {
     // TODO possibly add error detection here.
     this._orientation = newOrientation;
+  }
+
+  resolveName(metaData: IMetaData): string {
+    var fullPath = metaData.artifacts.filename;
+
+    return path.basename(fullPath);
   }
 
   calcOrientation(metaData: IMetaData): Orientation {

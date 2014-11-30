@@ -176,3 +176,16 @@ tape('calcDimensions returns orientation from width and height metadata',
   t.equals(actual, p.Orientation.vertical, 'Should be vertical orientation');
   t.end();
 });
+
+tape('resolveName will return just the filename and extension from path',
+    (t: tape.Test) => {
+  var testPicture: p.Picture,
+      expected = 'thing.jpg',
+      actual: string;
+
+      testMetaData.artifacts.filename = '/path/to/' + expected;
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.resolveName(testMetaData);
+  t.equals(expected, actual, 'Returns just the filename from full path');
+  t.end();
+});

@@ -214,6 +214,17 @@ tape('constructor should set the expFs', (t: tape.Test) => {
   t.equals(actual, expected, 'The expFs is set correctly as a number')
   t.end();
 });
+tape('constructor should set the expSh', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: string,
+      expected = '1/125';
+
+  testMetaData.properties['exif:exposuretime'] = expected;
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.expSh;
+  t.equals(actual, expected, 'The expSh is set correctly as a number')
+  t.end();
+});
 tape('constructor should set the focalLength', (t: tape.Test) => {
   var testPicture: p.Picture,
       actual: number,

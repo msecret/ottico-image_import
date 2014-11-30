@@ -21,6 +21,7 @@ export class Picture {
 
   constructor(metaData: IMetaData) {
     this.metaData = metaData;
+    this.name = this.resolveName(this.metaData);
     this._orientation = this.calcOrientation(this.metaData);
   }
 

@@ -156,6 +156,18 @@ tape('constructor should set the orientation', (t: tape.Test) => {
     'constucted');
   t.end();
 });
+tape('constructor should set the name', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      expected = 'thing.jpg',
+      actual: string;
+
+  testMetaData.artifacts.filename = expected;
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.name;
+
+  t.equals(expected, actual, 'Sets the name attr on construction');
+  t.end();
+});
 
 tape('calcDimensions returns orientation from width and height metadata',
     (t: tape.Test) => {
@@ -183,7 +195,7 @@ tape('resolveName will return just the filename and extension from path',
       expected = 'thing.jpg',
       actual: string;
 
-      testMetaData.artifacts.filename = '/path/to/' + expected;
+  testMetaData.artifacts.filename = '/path/to/' + expected;
   testPicture = new p.Picture(testMetaData);
   actual = testPicture.resolveName(testMetaData);
   t.equals(expected, actual, 'Returns just the filename from full path');

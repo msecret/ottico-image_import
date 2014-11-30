@@ -267,6 +267,20 @@ tape('constructor should set rating to 2', (t: tape.Test) => {
   t.equals(actual, expected, 'The rating is set to 2')
   t.end();
 });
+tape('constructor should set albumId to one passed in, or 0 if none',
+    (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: number;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.albumId;
+  t.equals(actual, 0, 'When album id not passed in, set to 0')
+
+  testPicture = new p.Picture(testMetaData, 8);
+  actual = testPicture.albumId;
+  t.equals(actual, 8, 'Album id set to number passed in')
+  t.end();
+});
 
 tape('calcDimensions returns orientation from width and height metadata',
     (t: tape.Test) => {

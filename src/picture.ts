@@ -23,10 +23,10 @@ export class Picture {
   expFs: number;
   expSh: string;
   focalLength: number;
-  private albumId: number;
+  albumId: number;
   status: Status;
 
-  constructor(metaData: IMetaData) {
+  constructor(metaData: IMetaData, albumId?: number) {
     this.metaData = metaData;
     this.name = metaData.properties['exif:imagedescription'];
     this.description = this.convertAscii(
@@ -41,6 +41,7 @@ export class Picture {
     this.focalLength = this.removeDenominator(
         metaData.properties[mapping.focalLength]);
     this.status = Status.inactive;
+    this.albumId = albumId || 0;
   }
 
   get imageThm(): string {

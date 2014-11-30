@@ -247,6 +247,16 @@ tape('constructor should set the expIso', (t: tape.Test) => {
   t.equals(actual, expected, 'The expIso is set correctly as a number')
   t.end();
 });
+tape('constructor should set status to inactive', (t: tape.Test) => {
+  var testPicture: p.Picture,
+      actual: p.Status,
+      expected = p.Status.inactive;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.status;
+  t.equals(actual, expected, 'The status is set to inactive')
+  t.end();
+});
 
 tape('calcDimensions returns orientation from width and height metadata',
     (t: tape.Test) => {

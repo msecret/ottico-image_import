@@ -10,7 +10,7 @@ var mapping = {
 }
 
 export enum Orientation {horizontal, vertical};
-enum Status {active, inactive};
+export enum Status {active, inactive};
 export class Picture {
   metaData: IMetaData;
   name: string;
@@ -24,7 +24,7 @@ export class Picture {
   expSh: string;
   focalLength: number;
   private albumId: number;
-  private status: Status;
+  status: Status;
 
   constructor(metaData: IMetaData) {
     this.metaData = metaData;
@@ -34,11 +34,12 @@ export class Picture {
     this.image = this.resolveImage(this.metaData);
     this._imageThm = this.createThm(this.image);
     this._orientation = this.calcOrientation(this.metaData);
+    this.expIso = metaData.properties[mapping.expIso];
     this.expFs = this.removeDenominator(metaData.properties[mapping.expFs]);
     this.expSh = metaData.properties[mapping.expSh];
     this.focalLength = this.removeDenominator(
         metaData.properties[mapping.focalLength]);
-    this.expIso = metaData.properties[mapping.expIso];
+    this.status = Status.inactive;
   }
 
   get imageThm(): string {

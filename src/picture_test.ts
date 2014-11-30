@@ -237,3 +237,15 @@ tape('createThm returns the name with thm attached', (t: tape.Test) => {
   t.equals(expected, actual, 'Sets thm string on name');
   t.end();
 });
+
+tape('convertAscii will convert an array of ascii codes to a string',
+    (t: tape.Test) => {
+  var testPicture: p.Picture,
+      expected = 'me',
+      actual: string;
+
+  testPicture = new p.Picture(testMetaData);
+  actual = testPicture.convertAscii('109, 101')
+  t.equals(actual, expected, 'Converts a string of ascii codes to string');
+  t.end();
+});

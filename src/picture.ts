@@ -44,6 +44,21 @@ export class Picture {
     this._orientation = newOrientation;
   }
 
+  convertAscii(codes: string): string {
+    var codesArr = codes.split(', '),
+        character: string,
+        characters =  '',
+        i = 0,
+        ilen = codesArr.length;
+
+    for ( ; i < ilen; i++) {
+      character = String.fromCharCode(parseInt(codesArr[i], 0));
+      characters += character;
+    }
+
+    return characters;
+  }
+
   resolveImage(metaData: IMetaData): string {
     var fullPath = metaData.artifacts.filename;
 

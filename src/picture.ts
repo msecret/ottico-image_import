@@ -75,6 +75,7 @@ export class Picture {
   }
 
   convertAscii(codes: string): string {
+    if (!codes) return '';
     var codesArr = codes.split(', '),
         character: string,
         characters =  '',
@@ -82,7 +83,11 @@ export class Picture {
         ilen = codesArr.length;
 
     for ( ; i < ilen; i++) {
-      character = String.fromCharCode(parseInt(codesArr[i], 0));
+      if (parseInt(codesArr[i], 10) === 0) {
+        character = '';
+      } else {
+        character = String.fromCharCode(parseInt(codesArr[i], 10));
+      }
       characters += character;
     }
 

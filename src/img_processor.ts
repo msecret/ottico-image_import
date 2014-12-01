@@ -31,7 +31,6 @@ export function getFiles(files: string[]): Promise<any> {
   for (i = 0, ilen = files.length; i < ilen; i++) {
     file = files[i];
     if (path.extname(file) === '.jpg') {
-      console.log(file);
       filePromises.push(fs_readFile(file));
     }
   }
@@ -46,8 +45,6 @@ export function processPictures(files: string[]): Promise<any> {
 
   for ( ; i < ilen; i++) {
     if (path.extname(files[i]) === '.jpg') {
-      // TODO debug
-      if (i === 2) break;
       metaDataPromises.push(im_identify(files[i]));
     }
   }

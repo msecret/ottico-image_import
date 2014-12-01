@@ -38,12 +38,10 @@ metaDataPromise.then(function(metaDatas) {
       pictures = [];
 
   for (i = 0, ilen = metaDatas.length; i < ilen; i++) {
-    if (i === 2) break;
     picture = new p.Picture(metaDatas[i], parameters.albumId);
-    sqls += sql.insertPicture(picture);
-    sqls += "\n";
+    console.log(sql.insertPicture(picture));
+    console.log("\n");
   }
-  console.log(sqls);
 }, function(err) {
   console.error('ERROR:Files not metadatable');
   console.log(err);
